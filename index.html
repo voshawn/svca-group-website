@@ -21,6 +21,7 @@
             --text-muted: #888888;
             --grid-minor: rgba(0, 0, 0, 0.035);
             --grid-major: rgba(0, 0, 0, 0.08);
+            --draft-line: rgba(0, 0, 0, 0.25);
             
             /* Line thickness */
             --line-w: 1px;
@@ -65,7 +66,7 @@
             opacity: 0;
             clip-path: circle(0vmax at 50% 50%);
             animation: revealGrid 2.5s linear forwards;
-            animation-delay: 1.5s; 
+            animation-delay: 0.5s; 
         }
 
         /* 2. THE DRAFT BOARD */
@@ -85,7 +86,8 @@
         /* ABSOLUTE MATHEMATICAL LINES */
         .line {
             position: absolute;
-            background-color: var(--grid-major);
+            background-color: var(--draft-line);
+            animation: fadeOut 0.5s ease-in 2.5s forwards;
         }
         .line-h {
             height: var(--line-w);
@@ -100,6 +102,7 @@
             transform: translateX(-50%); 
         }
         .line-h.top { top: 0; }
+        .line-h.mid { top: 50%; }
         .line-h.bottom { top: 100%; }
         .line-v.cross-left { left: 0; top: calc(var(--minor) * -1); height: calc(100% + var(--minor) * 2); }
         .line-v.cross-right { left: 100%; top: calc(var(--minor) * -1); height: calc(100% + var(--minor) * 2); }
@@ -179,6 +182,10 @@
             0% { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
             100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
         @keyframes revealGrid {
             0% {
                 opacity: 0;
@@ -213,6 +220,7 @@
 
     <div class="draft-board">
         <div class="line line-h top"></div>
+        <div class="line line-h mid"></div>
         <div class="line line-h bottom"></div>
         <div class="line line-v cross-left"></div>
         <div class="line line-v col-1"></div>
