@@ -88,8 +88,8 @@
         }
         .line-h {
             height: var(--line-w);
-            width: 100%;
-            left: 0;
+            width: calc(100% + var(--minor) * 2);
+            left: calc(var(--minor) * -1);
             transform: translateY(-50%); 
         }
         .line-v {
@@ -147,18 +147,31 @@
         .brand-group {
             /* Apply the Inter Sans-Serif Font */
             font-family: 'Inter', sans-serif;
-            font-size: calc(var(--minor) * 0.65);
+            font-size: calc(var(--minor) * 0.62);
             font-weight: 500;
-            letter-spacing: calc(var(--minor) * 1.5);
             text-transform: uppercase;
             color: var(--text-muted);
             line-height: 1;
-            
-            text-indent: calc(var(--minor) * 1.5);
+            width: calc(var(--minor) * 9);
+            height: var(--minor);
+            display: grid;
+            grid-template-columns: repeat(9, var(--minor));
+            justify-items: center;
+            align-items: center;
             
             /* Optical adjustment specific to Inter */
             padding-top: calc(var(--minor) * 0.1); 
         }
+
+        .group-letter {
+            grid-row: 1;
+            line-height: 1;
+        }
+        .group-letter.g { grid-column: 1; }
+        .group-letter.r { grid-column: 3; }
+        .group-letter.o { grid-column: 5; }
+        .group-letter.u { grid-column: 7; }
+        .group-letter.p { grid-column: 9; }
 
         /* Keyframes */
         @keyframes lockIn {
@@ -192,7 +205,13 @@
         </div>
 
         <div class="group-container">
-            <div class="brand-group">Group</div>
+            <div class="brand-group" aria-label="Group">
+                <span class="group-letter g">G</span>
+                <span class="group-letter r">R</span>
+                <span class="group-letter o">O</span>
+                <span class="group-letter u">U</span>
+                <span class="group-letter p">P</span>
+            </div>
         </div>
     </div>
 
